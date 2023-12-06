@@ -1,0 +1,10 @@
+.container {
+  width: 80%;
+  margin: 70px auto; /* Adjusted top margin */
+  padding: 20px;
+  height: 100%;
+}
+
+.container h1 {
+  text-align: center;
+}

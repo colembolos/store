@@ -11,6 +11,25 @@
   </head>
 
   <body>
-    <%= yield %>
+      <% if user_signed_in? %>
+        <div class="menu-bar">
+            <% if current_user.admin? %>
+              <!-- Admin Menu -->
+              <%= link_to 'Products', '#', class: 'menu-item' %>
+              <%= link_to 'Promotions', '#', class: 'menu-item' %>
+            <% else %>
+              <!-- Normal User Menu -->
+              <%= link_to 'Products', '#', class: 'menu-item' %>
+              <%= link_to 'My Cart', '#', class: 'menu-item' %>
+            <% end %>
+            <%= form_with(url: destroy_user_session_path, method: :delete) do |form| %>
+              <%= form.submit 'Logout', class: 'menu-item logout-button' %>
+            <% end %>
+        </div>
+      <% end %>
+
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>
