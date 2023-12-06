@@ -1,0 +1,37 @@
+/* app/assets/stylesheets/application.css or a custom stylesheet */
+
+.menu-bar {
+  position: fixed; /* Makes the menu bar fixed */
+  top: 0; /* Aligns the menu bar at the top of the page */
+  left: 0; /* Aligns the menu bar to the left of the page */
+  width: 100%; /* Ensures the menu bar extends across the full width */
+  z-index: 1000; /* Ensures the menu bar stays on top of other elements */
+  height: 20px;
+  background-color: #5C8DC6;
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center; /* Center menu items horizontally */
+}
+
+.menu-item {
+  margin: 0 1rem;
+  color: white; /* Majorelle Blue */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.menu-item:hover {
+  color: #305989;
+}
+
+.menu-item, .logout-button {
+  /* Existing styles for menu items */
+  padding: 10px 15px;
+  text-decoration: none;
+  color: white; /* Example text color */
+  background-color: #5C8DC6; /* Example background color */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
