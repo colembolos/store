@@ -1,13 +1,5 @@
 /* app/assets/stylesheets/products.css or application.css */
 
-.notice {
-  color: green;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid green;
-  border-radius: 5px;
-}
-
 .products-container {
   width: 80%;
   margin: 70px auto; /* Adjusted top margin */

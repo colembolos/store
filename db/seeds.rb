@@ -9,13 +9,23 @@
 # db/seeds.rb
 if Rails.env.development?
   User.create!(email: 'admin@example.com', password: 'password', role: 1)
-  User.create!(email: 'user@example.com', password: 'password', role: 0)
+  user = User.create!(email: 'user@example.com', password: 'password', role: 0)
 
   puts 'Users created'
 
-  Product.create(name: 'Green Tea', code: 'GR1', price: 311)
-  Product.create(name: 'Strawberries', code: 'SR1', price: 500)
-  Product.create(name: 'Coffee', code: 'CF1', price: 1123)
+  gr = Product.create(name: 'Green Tea', code: 'GR1', price: 311)
+  sr = Product.create(name: 'Strawberries', code: 'SR1', price: 500)
+  cf = Product.create(name: 'Coffee', code: 'CF1', price: 1123)
 
   puts 'Products created'
+
+  user.create_basket
+
+  puts 'Basket Created'
+
+  Promotion.create(product_id: gr.id, promotion_type: :get_one_free, threshold: 2)
+  Promotion.create(product_id: sr.id, promotion_type: :bulk_discount, threshold: 3, rules: { discounted_price: 450 })
+  Promotion.create(product_id: cf.id, promotion_type: :bulk_percentage, threshold: 2, rules: { discount_percentage: 3333 })
+
+  puts 'Promotions created'
 end
