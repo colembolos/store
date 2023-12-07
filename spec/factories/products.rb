@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :product do
-    name { "MyString" }
-    code { "MyString" }
-    description { "MyText" }
-    price { 1 }
+    name { Faker::Name.name }
+    code { Faker::Name.unique.initials }
+    description { Faker::Lorem.sentence }
+    price { 1000 }
   end
 end

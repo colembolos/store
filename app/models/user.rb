@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   enum role: %i[user admin]
+
+  has_one :basket, dependent: :destroy
 end
