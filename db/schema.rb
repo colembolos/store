@@ -10,7 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_06_181309) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_06_231019) do
+  create_table "basket_items", force: :cascade do |t|
+    t.integer "basket_id", null: false
+    t.integer "product_id", null: false
+    t.integer "amount", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["basket_id"], name: "index_basket_items_on_basket_id"
+    t.index ["product_id"], name: "index_basket_items_on_product_id"
+  end
+
+  create_table "basket_products", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "product_id", null: false
+    t.integer "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_basket_products_on_product_id"
+    t.index ["user_id"], name: "index_basket_products_on_user_id"
+  end
+
+  create_table "baskets", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_baskets_on_user_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name", null: false
     t.string "code", null: false
@@ -33,4 +60,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_06_181309) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "basket_items", "baskets"
+  add_foreign_key "basket_items", "products"
+  add_foreign_key "basket_products", "products"
+  add_foreign_key "basket_products", "users"
+  add_foreign_key "baskets", "users"
 end

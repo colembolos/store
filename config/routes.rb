@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   end
 
   resources :products, only: [:index]
+  resources :basket_items, only: %i[index create destroy]
 end
