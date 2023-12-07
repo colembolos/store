@@ -8,3 +8,22 @@
 .container h1 {
   text-align: center;
 }
+
+/* Flash Messages Styles */
+
+.flash {
+  padding: 15px;
+  border-radius: 5px;
+  color: #fff;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.flash.notice {
+  background-color: #28a745; /* Green for success/notice messages */
+}
+
+.flash.alert {
+  background-color: #dc3545; /* Red for error/alert messages */
+}

@@ -1,11 +1,11 @@
 class BasketItemsController < ApplicationController
   def index
-    basket
+    @total = basket.total
   end
 
   def create
     basket_item = basket.basket_items.find_or_initialize_by(product: product)
-    basket_item.amount += create_params[:amount].to_i
+    basket_item.amount += amount_param.to_i
 
     if basket_item.save
       redirect_to products_path, notice: 'Product added to basket successfully.'
@@ -15,10 +15,10 @@ class BasketItemsController < ApplicationController
   end
 
   def destroy
-    if destroy_params[:amount].to_i >= basket_item.amount
+    if amount_param.to_i >= basket_item.amount
       basket_item.destroy!
     else
-      basket_item.amount -= destroy_params[:amount].to_i
+      basket_item.amount -= amount_param.to_i
       basket_item.save!
     end
 
@@ -31,8 +31,8 @@ class BasketItemsController < ApplicationController
     params.permit(:product_id, :amount)
   end
 
-  def destroy_params
-    params.permit(:amount)
+  def amount_param
+    params.require(:amount)
   end
 
   def basket

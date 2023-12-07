@@ -29,9 +29,12 @@
       <% end %>
 
     <div class="container">
-      <% if notice %>
-        <p class="notice"><%= notice %></p>
+      <% flash.each do |type, message| %>
+        <div class="flash <%= type %>">
+          <%= message %>
+        </div>
       <% end %>
+
       <%= yield %>
     </div>
   </body>
