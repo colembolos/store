@@ -1,0 +1,30 @@
+<div class="promotions-container">
+  <h1>Promotions</h1>
+  <%= link_to 'New Promotion', new_admin_promotion_path, class: 'new-promotion-link' %>
+
+  <table class="promotions-table">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Type</th>
+        <th>Threshold</th>
+        <th>Rules</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @promotions.each do |promotion| %>
+        <tr>
+          <td><%= promotion.product.code %></td>
+          <td><%= promotion.promotion_type %></td>
+          <td><%= promotion.threshold %></td>
+          <td><%= promotion.rules %></td>
+          <td>
+            <%= link_to 'Show', admin_promotion_path(promotion), class: 'show-link' %>
+            <%= link_to 'Edit', edit_admin_promotion_path(promotion), class: 'show-link' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

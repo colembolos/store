@@ -1,0 +1,101 @@
+.promotions-container {
+  width: 80%;
+  margin: 70px auto; /* Adjusted top margin */
+  padding: 20px;
+  height: 100%;
+}
+
+.promotions-container h1 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.new-promotion-link {
+  display: inline-block;
+  margin-bottom: 20px;
+  background-color: #5C8DC6;
+  color: white;
+  padding: 10px 15px;
+  text-decoration: none;
+  border-radius: 5px;
+  float: right;
+}
+
+.new-promotion-link:hover {
+  background-color: #305989;
+}
+
+.promotions-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.promotions-table th,
+.promotions-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.promotions-table th {
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+.promotions-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.promotions-table tr:hover {
+  background-color: #eaeaea;
+}
+
+.show-link {
+  color: #0275d8;
+  text-decoration: none;
+}
+
+.show-link:hover {
+  text-decoration: underline;
+}
+
+/* Show promotion Page Styles */
+
+.promotion-show-container {
+  width: 60%;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.promotion-details {
+  margin-bottom: 20px;
+}
+
+.promotion-details h2 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.promotion-details p {
+  color: #666;
+  line-height: 1.6;
+}
+
+.destroy-promotion-link {
+  background-color: #5C8DC6;
+  color: white;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 1rem 0;
+}
+
+.destroy-promotion-link:hover {
+  background-color: #305989;
+}
