@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Product, type: :model do
+  describe "Relationships" do
+    it { is_expected.to have_many(:basket_items) }
+    it { is_expected.to have_many(:baskets) }
+    it { is_expected.to have_many(:promotions) }
+  end
+
   describe 'Validations' do
     it "is valid with valid attributes" do
       product = Product.new(code: "001", name: "Test Product", price: 10.0)

@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  describe "Relationships" do
+    it { is_expected.to have_one(:basket) }
+  end
+
   describe 'Validations' do
     it "is user by default" do
       user = User.create(email: "user@example.com", password: "password")

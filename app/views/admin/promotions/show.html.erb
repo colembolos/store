@@ -1,0 +1,11 @@
+<div class="promotion-show-container">
+  <div class="promotion-details">
+    <p><strong>Product Name:</strong> <%= @promotion.product.name %></p>
+    <p><strong>Type:</strong> <%= @promotion.promotion_type.humanize %></p>
+    <p><strong>Threshold:</strong> <%= @promotion.threshold %></p>
+    <p><strong>Rules:</strong> <%= JSON.pretty_generate(@promotion.rules) %></p>
+  </div>
+
+  <%= link_to 'Back to Promotions', admin_promotions_path, class: 'back-link' %>
+  <%= button_to "Destroy this promotion", admin_promotion_path(@promotion), method: :delete, class: 'destroy-promotion-link' %>
+</div>

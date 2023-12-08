@@ -19,7 +19,6 @@
           <td>
             <%= form_with(url: basket_items_path, method: :post) do |form| %>
               <%= form.hidden_field :product_id, value: product.id %>
-              <%= form.number_field :amount, in: 1..99, step: 1 %>
               <%= form.submit "Add to Cart" %>
             <% end %>
           </td>

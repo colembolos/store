@@ -17,19 +17,22 @@ RSpec.describe "/admin/products", type: :request do
   # This should return the minimal set of attributes required to create a valid
   # Product. As you add validations to Product, be sure to
   # adjust the attributes here as well.
+  let(:product) { create(:product, price: 1000) }
   let(:valid_attributes) {
     {
-      name: 'test',
-      code: 'CT1',
-      price: 100
+      product_id: product.id,
+      promotion_type: 'get_one_free',
+      threshold: 2,
+      rules: ""
     }
   }
 
   let(:invalid_attributes) {
     {
-      name: '',
-      code: '',
-      price: 100
+      product_id: product.id,
+      promotion_type: 'get_one_free',
+      threshold: 2,
+      rules: "wrong json"
     }
   }
   let(:user) { create(:user, :admin) }
@@ -40,58 +43,58 @@ RSpec.describe "/admin/products", type: :request do
 
   describe "GET /index" do
     it "renders a successful response" do
-      Product.create! valid_attributes
-      get admin_products_url
+      Promotion.create! valid_attributes
+      get admin_promotions_url
       expect(response).to be_successful
     end
   end
 
   describe "GET /show" do
     it "renders a successful response" do
-      product = Product.create! valid_attributes
-      get admin_product_url(product)
+      promotion = Promotion.create! valid_attributes
+      get admin_promotion_url(promotion)
       expect(response).to be_successful
     end
   end
 
   describe "GET /new" do
     it "renders a successful response" do
-      get new_admin_product_url
+      get new_admin_promotion_url
       expect(response).to be_successful
     end
   end
 
   describe "GET /edit" do
     it "renders a successful response" do
-      product = Product.create! valid_attributes
-      get edit_admin_product_url(product)
+      promotion = Promotion.create! valid_attributes
+      get edit_admin_promotion_url(promotion)
       expect(response).to be_successful
     end
   end
 
   describe "POST /create" do
     context "with valid parameters" do
-      it "creates a new Product" do
+      it "creates a new Promotion" do
         expect {
-          post admin_products_url, params: { product: valid_attributes }
-        }.to change(Product, :count).by(1)
+          post admin_promotions_url, params: { promotion: valid_attributes }
+        }.to change(Promotion, :count).by(1)
       end
 
-      it "redirects to the created product" do
-        post admin_products_url, params: { product: valid_attributes }
-        expect(response).to redirect_to(admin_products_url)
+      it "redirects to the created promotion" do
+        post admin_promotions_url, params: { promotion: valid_attributes }
+        expect(response).to redirect_to(admin_promotions_url)
       end
     end
 
     context "with invalid parameters" do
-      it "does not create a new Product" do
+      it "does not create a new Promotion" do
         expect {
-          post admin_products_url, params: { product: invalid_attributes }
-        }.to change(Product, :count).by(0)
+          post admin_promotions_url, params: { promotion: invalid_attributes }
+        }.to change(Promotion, :count).by(0)
       end
     
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
-        post admin_products_url, params: { product: invalid_attributes }
+        post admin_promotions_url, params: { promotion: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
@@ -101,50 +104,48 @@ RSpec.describe "/admin/products", type: :request do
     context "with valid parameters" do
       let(:new_attributes) {
         {
-          name: 'new',
-          code: 'N1',
-          price: 200
+          product_id: product.id,
+          promotion_type: 'get_one_free',
+          threshold: 3
         }
       }
 
-      it "updates the requested product" do
-        product = Product.create! valid_attributes
-        patch admin_product_url(product), params: { product: new_attributes }
-        product.reload
-        expect(product.name).to eq('new')
-        expect(product.code).to eq('N1')
-        expect(product.price).to eq(200)
+      it "updates the requested promotion" do
+        promotion = Promotion.create! valid_attributes
+        patch admin_promotion_url(promotion), params: { promotion: new_attributes }
+        promotion.reload
+        expect(promotion.threshold).to eq(3)
       end
 
-      it "redirects to the product" do
-        product = Product.create! valid_attributes
-        patch admin_product_url(product), params: { product: new_attributes }
-        product.reload
-        expect(response).to redirect_to(admin_products_url)
+      it "redirects to the promotion" do
+        promotion = Promotion.create! valid_attributes
+        patch admin_promotion_url(promotion), params: { promotion: new_attributes }
+        promotion.reload
+        expect(response).to redirect_to(admin_promotions_url)
       end
     end
 
     context "with invalid parameters" do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
-        product = Product.create! valid_attributes
-        patch admin_product_url(product), params: { product: invalid_attributes }
+        promotion = Promotion.create! valid_attributes
+        patch admin_promotion_url(promotion), params: { promotion: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
 
   describe "DELETE /destroy" do
-    it "destroys the requested product" do
-      product = Product.create! valid_attributes
+    it "destroys the requested promotion" do
+      promotion = Promotion.create! valid_attributes
       expect {
-        delete admin_product_url(product)
-      }.to change(Product, :count).by(-1)
+        delete admin_promotion_url(promotion)
+      }.to change(Promotion, :count).by(-1)
     end
 
-    it "redirects to the products list" do
-      product = Product.create! valid_attributes
-      delete admin_product_url(product)
-      expect(response).to redirect_to(admin_products_url)
+    it "redirects to the promotions list" do
+      promotion = Promotion.create! valid_attributes
+      delete admin_promotion_url(promotion)
+      expect(response).to redirect_to(admin_promotions_url)
     end
   end
 end

@@ -3,7 +3,6 @@ class CreateBasketItems < ActiveRecord::Migration[7.0]
     create_table :basket_items do |t|
       t.references :basket, null: false, foreign_key: true
       t.references :product, null: false, foreign_key: true
-      t.integer :amount, default: 0
 
       t.timestamps
     end

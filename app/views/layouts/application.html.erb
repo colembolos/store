@@ -16,7 +16,7 @@
             <% if current_user.admin? %>
               <!-- Admin Menu -->
               <%= link_to 'Products', admin_products_path, class: 'menu-item' %>
-              <%= link_to 'Promotions', '#', class: 'menu-item' %>
+              <%= link_to 'Promotions', admin_promotions_path, class: 'menu-item' %>
             <% else %>
               <!-- Normal User Menu -->
               <%= link_to 'Products', products_path, class: 'menu-item' %>
