@@ -16,7 +16,7 @@
         <tr>
           <td><%= product.code %></td>
           <td><%= product.name %></td>
-          <td><%= number_to_currency(product.price_value) %></td>
+          <td><%= number_to_currency(product.price_value, unit: '€') %></td>
           <td>
             <%= link_to 'Show', admin_product_path(product), class: 'show-link' %>
             <%= link_to 'Edit', edit_admin_product_path(product), class: 'show-link' %>
